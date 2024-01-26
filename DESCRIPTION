@@ -1,0 +1,10 @@
+Package: pdcutils
+Type: Package
+Title: Utility functions for R
+Version: 1.0
+Date: 2024-01-26
+Author: Phil Charles
+Maintainer: Phil Charles https://github.com/pdcharles <yourfault@somewhere.net>
+Description: Utility functions for R
+License: MIT
+RoxygenNote: 7.2.3
