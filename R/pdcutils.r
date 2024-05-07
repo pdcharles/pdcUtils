@@ -4,9 +4,13 @@ img <- function(filename,code,width=7,height=7,units='in',res=144,env=.GlobalEnv
  is_knitr <- !is.null(getOption("knitr.in.progress"))
  is_png <- grepl('\\.png$',filename)
  is_jpg <- grepl('\\.jpg$',filename) || grepl('\\.jpeg$',filename)
- dir.create('out',showWarnings=F)
+ to_prepend <- ''
+ if (!grepl('/',filename)) {
+  dir.create('out',showWarnings=F)
+  to_prepend <- 'out/'
+ }
  if (is_jupyter || is_knitr || is_png) {
-  fn <- paste0('out/',if (is_png) filename else sub('\\.[^.]+$','.png',filename))
+  fn <- paste0(to_prepend,if (is_png) filename else sub('\\.[^.]+$','.png',filename))
   png(fn,width=width,height=height,units=units,res=res,...)
   eval(substitute(code),envir=env)
   dev.off()
@@ -14,7 +18,7 @@ img <- function(filename,code,width=7,height=7,units='in',res=144,env=.GlobalEnv
   else if (is_knitr) knitr::include_graphics(fn,dpi=NA)
  }
  else if (is_jpg) {
-  jpg(paste0('out/',filename),width=width,height=height,units=units,res=res,...)
+  jpg(paste0(to_prepend,filename),width=width,height=height,units=units,res=res,...)
   eval(substitute(code),envir=env)
   dev.off()
  }
@@ -29,7 +33,7 @@ img <- function(filename,code,width=7,height=7,units='in',res=144,env=.GlobalEnv
   else {
    filename <- sub('\\.[^.]+$','.pdf',filename)
   }
-  cairo_pdf(paste0('out/',filename),width=width,height=height,...)
+  cairo_pdf(paste0(to_prepend,filename),width=width,height=height,...)
   eval(substitute(code),envir=env)
   dev.off()
  }
