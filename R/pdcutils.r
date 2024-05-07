@@ -18,7 +18,7 @@ img <- function(filename,code,width=7,height=7,units='in',res=144,env=.GlobalEnv
   else if (is_knitr) knitr::include_graphics(fn,dpi=NA)
  }
  else if (is_jpg) {
-  jpg(paste0(to_prepend,filename),width=width,height=height,units=units,res=res,...)
+  jpeg(paste0(to_prepend,filename),width=width,height=height,units=units,res=res,...)
   eval(substitute(code),envir=env)
   dev.off()
  }
