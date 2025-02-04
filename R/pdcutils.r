@@ -1,5 +1,5 @@
 #' @export
-img <- function(filename, code, width = 7, height = 7, units = "in", res = 144, env = .GlobalEnv, ...) { # image writing fucntion, jupyter-compatible, render/spin-compatible
+img <- function(filename, code, width = 7, height = 7, units = "in", res = 144, env = .GlobalEnv, ...) { # image writing function, jupyter-compatible, render/spin-compatible
   is_jupyter <- "IRkernel" %in% loadedNamespaces()
   is_knitr <- !is.null(getOption("knitr.in.progress"))
   is_png <- grepl("\\.png$", filename)
