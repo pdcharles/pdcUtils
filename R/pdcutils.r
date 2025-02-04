@@ -185,3 +185,14 @@ wrap <- Vectorize(function(text, len) {
   }
   paste0(ret, collapse = "\n")
 }, vectorize.args = "text")
+
+#' @export
+path_home <- function() {
+  split_path <- function(x) if (dirname(x)==x) x else c(split_path(dirname(x)),basename(x))
+  if (Sys.info()['sysname']=='Windows') {
+    do.call(file.path,as.list(split_path(Sys.getenv("USERPROFILE"))))
+  }
+  else {
+    path.expand('~')
+  }
+}
