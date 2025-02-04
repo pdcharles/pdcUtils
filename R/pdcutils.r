@@ -40,7 +40,7 @@ img <- function(filename, code, width = 7, height = 7, units = "in", res = 144, 
 }
 
 #' @export
-assignPrecomputed <- function(variable, code, env = .GlobalEnv) { # create variable unless exists or file object exists
+assign_precomputed <- function(variable, code, env = .GlobalEnv) { # create variable unless exists or file object exists
   dir.create("precomputed", showWarnings = F)
   if (!exists(variable)) {
     fileName <- paste0("precomputed/", variable, ".rds")
@@ -141,7 +141,7 @@ whatdidido <- function() { # what did I do?
 
 
 #' @export
-convertID <- function(database, acc, accType, retrieveAccType, removeTextNA = T) { # convert gene/protein ids to another format
+convert_id <- function(database, acc, accType, retrieveAccType, removeTextNA = T) { # convert gene/protein ids to another format
   if (class(database) == "UniProt.ws") {
     retrieveAcc <- suppressMessages(select(database, acc[1], keytype = accType, columns = c(retrieveAccType)))
     if (length(acc) > 1) {
